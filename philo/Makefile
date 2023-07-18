@@ -7,7 +7,7 @@ INCS			= -Iincludes
 HEADER			= $(wildcard includes/*.h)
 RM				= rm -rf
 CC				= cc
-FLAGS			= -Wall -Wextra -Werror #-fsanitize=address -g
+FLAGS			= -Wall -Wextra -Werror #-g3 -fsanitize=thread
 
 
 all:	$(BUILD) lib $(NAME)

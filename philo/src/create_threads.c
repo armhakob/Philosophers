@@ -6,7 +6,7 @@
 /*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:09:00 by armhakob          #+#    #+#             */
-/*   Updated: 2023/07/17 16:29:51 by armhakob         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:31:05 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ph_usleep(unsigned long sleep, t_philo *philo)
 	value = get_time();
 	while (!is_die(philo))
 	{
-		if (get_time()- value <= sleep)
+		if (get_time() - value <= sleep)
 			usleep(50);
 		else
 			break ;
@@ -79,8 +79,8 @@ void	create_threads(t_main *main)
 	i = 0;
 	while (i < main->count_philos)
 	{
-		pthread_create(&main->philos[i].philo, NULL, \
-			(t_thread_idk)&routine, &main->philos[i]);
+		pthread_create(&(main->philos[i].philo), NULL, \
+			(t_thread_idk)routine, &main->philos[i]);
 		i++;
 	}
 	while (1)

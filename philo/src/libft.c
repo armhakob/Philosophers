@@ -6,11 +6,32 @@
 /*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:00:51 by armhakob          #+#    #+#             */
-/*   Updated: 2023/07/13 11:18:40 by armhakob         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:43:24 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_atoi(char *str)
+{
+	int	result;
+	int	sign;
+
+	result = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + *str - '0';
+		str++;
+	}
+	return (sign * result);
+}
 
 size_t	ft_strlen(const char *str)
 {
@@ -26,58 +47,55 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	size_t	count;
+	size_t	size;
+	char	*src;
 
-	if (!s1)
-	{
-		s1 = (char *)malloc(sizeof(char) * 1);
-		s1[0] = '\0';
-	}
-	if (!s1 || !s2)
+	if (!s)
 		return (0);
-	str = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i])
+	if ((unsigned int)ft_strlen(s) < start)
+		return (ft_strdup(""));
+	size = ft_strlen(s + start);
+	if (size < len)
+		len = size;
+	src = (char *)malloc((len + 1) * sizeof(char));
+	if (!src)
+		return (0);
+	count = 0;
+	while (count < len)
 	{
-		str[j++] = s1[i];
-		i++;
+		src[count] = s[start + count];
+		count++;
 	}
-	i = 0;
-	while (s2[i])
-	{
-		str[j++] = s2[i];
-		i++;
-	}
-	str[j] = 0;
-	return (str);
+	src[count] = '\0';
+	return (src);
 }
 
-char	**ft_split(char *s)
+static char	*ft_strcpy(char *dest, const char *src)
 {
-	char	**ret;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	ret = (char **)malloc(sizeof(char *) * 1000);
-	while (*s)
+	while (src[i] != '\0')
 	{
-		ret[i] = (char *)malloc(1000);
-		while (*s && (*s == ' ' || *s == '\t'))
-			s++;
-		j = 0;
-		while (*s &&  *s != ' ' && *s != '\t')
-			ret[i][j++] = *s++;
-		ret[i][j] = '\0';
-		i++;
+		dest[i] = src[i];
+		++i;
 	}
-	ret[i] = NULL;
-	return (ret);
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_strdup(const char *src)
+{
+	char	*mas;
+	int		ca;
+
+	ca = ft_strlen(src);
+	mas = (char *)malloc(ca + 1);
+	if (!mas)
+		return (0);
+	mas = ft_strcpy(mas, src);
+	return (mas);
 }

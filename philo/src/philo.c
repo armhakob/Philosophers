@@ -6,7 +6,7 @@
 /*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 09:55:40 by armhakob          #+#    #+#             */
-/*   Updated: 2023/07/17 16:28:33 by armhakob         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:42:05 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,20 @@ int	main(int argc, char **argv)
 	t_main	main;
 	char	**s;
 
+	get_time();
 	if (argc != 5 && argc != 6)
 	{
 		write(2, "Error\n", 6);
 		return (1);
-	}	
+	}
 	s = splited(argc, argv);
 	if (check_sign(s) != 0 || args_count(s) != 0 || \
-		check_args(s) != 0)
+		check_args(s) != 0 || check_max(s) != 0)
 		return (1);
 	main_init(&main, s);
 	philo_init(&main, s);
 	fork_init(&main);
 	create_threads(&main);
 	program_exit(&main);
-	// t_main *main1 = &main;
-	// printf("%d/n", main1->max_eat);
-	// printf("%d/n", main1->count_philos);
-	// printf("%d/n", main1->time_die);
-	// // printf("%d/n", main1->philos->time_eat);
-	// // printf("%d/n", main1->philos->time_sleep);
 	return (0);
 }
