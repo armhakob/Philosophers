@@ -6,7 +6,7 @@
 /*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 10:28:51 by armhakob          #+#    #+#             */
-/*   Updated: 2023/07/18 15:39:47 by armhakob         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:15:21 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ char	**splited(int argc, char **argv)
 
 	k = 1;
 	s = NULL;
+	join = NULL;
 	while (k < argc)
 	{
 		join = ft_strjoin(join, argv[k]);

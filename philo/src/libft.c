@@ -6,7 +6,7 @@
 /*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:00:51 by armhakob          #+#    #+#             */
-/*   Updated: 2023/07/18 15:43:24 by armhakob         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:09:14 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ size_t	ft_strlen(const char *str)
 	len = 0;
 	if (!str)
 		return (0);
-	while (str[len] != '\0')
+	while (str && str[len] != '\0')
 	{
 		len++;
 	}
